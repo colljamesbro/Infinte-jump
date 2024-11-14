@@ -1,0 +1,11 @@
+-- Enable User Input Service
+local UserInputService = game:GetService("UserInputService")
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+
+-- Function to enable infinite jumping
+UserInputService.JumpRequest:Connect(function()
+    -- When the jump is requested, apply a jump force regardless of whether on the ground
+    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+end)
