@@ -2,13 +2,12 @@ local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 
--- Function to set infinite health
-local function setInfiniteHealth()
-    while true do
-        humanoid.Health = humanoid.MaxHealth  -- Always set health to max health
-        wait(0.1)  -- Repeat every 0.1 seconds
-    end
+-- Function to instantly heal the player
+local function healInstantly()
+    humanoid.HealthChanged:Connect(function()
+        humanoid.Health = humanoid.MaxHealth  -- Set health back to max instantly
+    end)
 end
 
--- Call the function to start the infinite health loop
-setInfiniteHealth()
+-- Call the function to start the instant healing
+healInstantly()
