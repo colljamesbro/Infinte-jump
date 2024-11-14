@@ -1,11 +1,14 @@
--- Enable User Input Service
-local UserInputService = game:GetService("UserInputService")
 local player = game.Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
 local humanoid = character:WaitForChild("Humanoid")
 
--- Function to enable infinite jumping
-UserInputService.JumpRequest:Connect(function()
-    -- When the jump is requested, apply a jump force regardless of whether on the ground
-    humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
-end)
+-- Function to set infinite health
+local function setInfiniteHealth()
+    while true do
+        humanoid.Health = humanoid.MaxHealth  -- Always set health to max health
+        wait(0.1)  -- Repeat every 0.1 seconds
+    end
+end
+
+-- Call the function to start the infinite health loop
+setInfiniteHealth()
